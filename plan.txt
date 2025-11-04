@@ -1,0 +1,14 @@
+Sélectionner env: -> vérifier présence dossier envName.
+	Si n'existe pas:
+		- lister sources et écrire (hash ou pas) dans srcList.txt
+		- générer compile_commands.json
+		- linker celui de la racine
+		- copier .clangd générique
+		- écrire nom de l'env dans envName.txt
+
+	Si il existe:
+		- vérifier les sources
+			- si OK, continuer
+			- si NON, régénéer compile_commands.json et srcList.txt
+		- linker compile_commands.json de la racine
+		- écirire nom de l'env dans envName.txt
