@@ -31,6 +31,21 @@ then
 
 	ln -f "${root}/.smart_pio/${1}/compile_commands.json" "${root}/compile_commands.json"
 	echo "${1}" > "${root}/.smart_pio/envName.txt"
+
+	idedata=$(platformio run -t idedata -e ${1} | jq --raw-input '. | fromjson?')
+	toolchainPath=$(dirname $(dirname $(echo $idedata | jq '.cxx_path' | grep -Po '[^"]*')))
+	target="riscv32-esp-elf"
+	sysroot="$toolchainPath/$target"
+	echo -e "
+Diagnostics:
+	Suppress: [\"-Wvla-cxx-extension\"]
+
+CompileFlags:
+	Add:
+		$(echo $idedata | jq '["-isystem" + .includes.toolchain.[]]')
+	Remove: [\"-fno-shrink-wrap\", \"-fno-tree-switch-conversion\", \"-fstrict-volatile-bitfields\"]
+" > "${root}/.clangd"
+
 else
 	echo "env $1 not found, see the list below :"
 	echo $(~/smart_pio.nvim/GetPioEnvList.sh)
