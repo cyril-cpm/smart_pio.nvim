@@ -1,24 +1,13 @@
 #!/bin/sh
 
-pioInitFound=false
 
-while  ! $pioInitFound ;
-do
-	if [ $PWD == '/' ]; then
-		echo "Not in a platformio porject."
-		exit
-	fi
+root=$(sh ~/smart_pio.nvim/FindPioIni.sh)
 
-	if [ -f "platformio.ini" ]; then
-		pioInitFound=true
-	else
-		cd ..
-	fi
-done
+if [[ $root == '/' ]]; then
+	echo "platformio.ini not found"
+	exit 1
+fi
 
-echo "platformio.ini found in $PWD"
-
-root=$PWD
 
 if [[ $(~/smart_pio.nvim/GetPioEnvList.sh | grep -wc "$1") -eq 1 ]]
 then

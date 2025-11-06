@@ -30,6 +30,7 @@ M.select_env = function()
 							print(obj.code) 
 						else
 							print("SPIO Switching env success")
+							M.selectedEnv = choice
 						end
 					end
 
@@ -43,6 +44,17 @@ end
 
 vim.api.nvim_create_user_command("SPioSelectEnv", function()
 	require("smart_pio").select_env()
+end, {})
+
+M.get_current_env = function()
+	if (M.selectedEnv == nil) then
+		M.selectedEnv =  vim.fn.system({"sh", "/home/cpm/smart_pio.nvim/GetCurrentEnv.sh"})
+	end
+	return M.selectedEnv
+end
+
+vim.api.nvim_create_user_command("SPioGetCurrentEnv", function()
+	require("smart_pio").get_current_env()
 end, {})
 
 return M
