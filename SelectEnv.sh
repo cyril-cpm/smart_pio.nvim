@@ -43,8 +43,12 @@ Diagnostics:
 CompileFlags:
 	Add:
 		$(echo $idedata | jq '["-isystem" + .includes.toolchain.[]]')
-	Remove: [\"-fno-shrink-wrap\", \"-fno-tree-switch-conversion\", \"-fstrict-volatile-bitfields\"]
+	Remove: [\"-fno-shrink-wrap\", \"-fno-tree-switch-conversion\", \"-fstrict-volatile-bitfields\", \"-mlongcalls\"]
 " > "${root}/.clangd"
+
+if [[ ! -z $PLATFORMIO_INSTALL_ROOT ]]; then
+	ln -f "${root}/.clangd" "${PLATFORMIO_INSTALL_ROOT}/.clangd"
+fi
 
 else
 	echo "env $1 not found, see the list below :"
