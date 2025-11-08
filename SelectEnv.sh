@@ -39,6 +39,7 @@ then
 	echo -e "
 Diagnostics:
 	Suppress: [\"-Wvla-cxx-extension\"]
+	UnusedIncludes: None
 
 CompileFlags:
 	Add:
