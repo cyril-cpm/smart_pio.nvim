@@ -57,8 +57,12 @@ vim.api.nvim_create_user_command("SPioGetCurrentEnv", function()
 	require("smart_pio").get_current_env()
 end, {})
 
+function GoToCWD()
+	vim.call('VimuxRunCommand', 'cd ' .. vim.uv.cwd())
+end
 
 M.build_current_env = function()
+	GoToCWD()
 	vim.call('VimuxRunCommand', 'platformio run -t app -e ' .. M.get_current_env())
 end
 
@@ -67,6 +71,7 @@ vim.api.nvim_create_user_command("SPioBuild", function()
 end, {})
 
 M.upload_current_env = function()
+	GoToCWD()
 	vim.call('VimuxRunCommand', 'platformio run -t upload -e ' .. M.get_current_env())
 end
 
