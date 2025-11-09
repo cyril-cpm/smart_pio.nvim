@@ -43,7 +43,7 @@ Diagnostics:
 
 CompileFlags:
 	Add:
-		$(echo $idedata | jq '["-isystem" + .includes.toolchain.[]]')
+		$(echo $idedata | jq '["-isystem" + .includes.toolchain.[]] + ["-xc++"]')
 	Remove: [\"-fno-shrink-wrap\", \"-fno-tree-switch-conversion\", \"-fstrict-volatile-bitfields\", \"-mlongcalls\"]
 " > "${root}/.clangd"
 
