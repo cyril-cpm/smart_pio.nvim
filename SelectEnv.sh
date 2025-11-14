@@ -3,13 +3,13 @@
 
 root=$(sh ~/smart_pio.nvim/FindPioIni.sh)
 
-if [[ $root == '/' ]]; then
+if [ $root == '/' ]; then
 	echo "platformio.ini not found"
 	exit 1
 fi
 
 
-if [[ $(~/smart_pio.nvim/GetPioEnvList.sh | grep -wc "$1") -eq 1 ]]
+if [ $(~/smart_pio.nvim/GetPioEnvList.sh | grep -wc "$1") -eq 1 ]
 then
 	if [ ! -d "${root}/.smart_pio" ]; then
 		echo "Creating .smart_pio folder"
@@ -64,7 +64,7 @@ CompileFlags:
 	Remove: [\"-fno-shrink-wrap\", \"-fno-tree-switch-conversion\", \"-fstrict-volatile-bitfields\", \"-mlongcalls\"]
 " > "${root}/.clangd"
 
-if [[ ! -z $PLATFORMIO_INSTALL_ROOT ]]; then
+if [ ! -z $PLATFORMIO_INSTALL_ROOT ]; then
 	
 	echo -e "
 Diagnostics:
