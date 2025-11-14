@@ -4,7 +4,7 @@ pioInitFound=false
 
 while  ! $pioInitFound ;
 do
-	if [ $PWD == '/' ]; then
+	if [ $PWD = "/" ]; then
 		echo "/"
 		exit 1
 	fi
