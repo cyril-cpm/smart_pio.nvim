@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 
 root=$(sh ~/smart_pio.nvim/FindPioIni.sh)
