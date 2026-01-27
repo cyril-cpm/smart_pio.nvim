@@ -63,7 +63,7 @@ end
 
 M.build_current_env = function()
 	GoToCWD()
-	vim.call('VimuxRunCommand', 'platformio run -t app -e ' .. M.get_current_env())
+	vim.call('VimuxRunCommand', 'clear; platformio run -t app -e ' .. M.get_current_env())
 end
 
 vim.api.nvim_create_user_command("SPioBuild", function()
