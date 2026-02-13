@@ -54,7 +54,8 @@ Diagnostics:
 		\"redefinition_different_typedef\",
 		\"pp_file_not_found\",
 		\"init_conversion_failed\",
-		\"typecheck_convert_incompatible_pointer\"
+		\"typecheck_convert_incompatible_pointer\",
+		\"field_incomplete_or_sizeless\"
 		]
 	UnusedIncludes: None
 
